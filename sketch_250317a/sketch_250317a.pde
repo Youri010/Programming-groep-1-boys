@@ -6,7 +6,8 @@ Table table;
 
 void setup() {
 size(1250,500);
-background(255);
+ drawGradientRect(450, 400, 400, 50, color(255, 0, 0), color(0, 0, 255));
+
   table = loadTable("COVID19BE_HOSP.csv", "header");
   println(table.getRowCount() + " total rows in table");
   for (TableRow row : table.rows()) {
@@ -14,11 +15,22 @@ background(255);
     fill(0);
     //text(datum,random(2000),random(500));
     //println(datum);
+   
+     
   }
 
  
   
 }
+void drawGradientRect(float x, float y, float w, float h, color c1, color c2){
+  for (int i = 0; i < w; i++) {
+    float inter = map(i, 0, w, 0, 1);
+    color c = lerpColor(c1,c2, inter);
+    stroke(c);
+    line(x + i, y, x + i, y + h);
+  }
+}
+
 
 
 //2 data omzetten naar objecten 
