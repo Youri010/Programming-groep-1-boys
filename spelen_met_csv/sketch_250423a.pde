@@ -9,7 +9,7 @@ int provinces = 11;
 
 void setup() {
   size(1000, 300); // Wider window for 40 points
-  
+  noStroke();
   // Initialize array
   values = new int[provinces][dataPoints];
   
@@ -24,8 +24,8 @@ void setup() {
       exit();
     }
     
-    // Print first few values to verify
-    for (int j = 0; j < min(5, provinceData[i].getRowCount()); j++) {
+    // Print first few values to verify --> inmiddels alle waardes
+    for (int j = 0; j < min(40, provinceData[i].getRowCount()); j++) {
       println("Row " + j + ": " + provinceData[i].getInt(j, 0));
     }
     
