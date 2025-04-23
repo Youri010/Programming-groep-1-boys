@@ -1,11 +1,11 @@
 // Simplest possible heatmap for 40 data points
-Table[] provinceData = new Table[4];
-String[] provinceFiles = {"Antwerpen.csv", "Liege.csv", "Brussel.csv", "BrabantWallon.csv"};
+Table[] provinceData = new Table[11];
+String[] provinceFiles = {"Antwerpen.csv", "WestVlaanderen.csv", "OostVlaanderen.csv", "Limburg.csv","VlaamsBrabant.csv","Brussel.csv","Luxembourg.csv","Namur.csv","Hainaut.csv","Liege.csv","BrabantWallon.csv"};
 int[][] values; // Will store all values [province][dataPoint]
 
 float cellWidth, cellHeight;
 int dataPoints = 40;
-int provinces = 4;
+int provinces = 11;
 
 void setup() {
   size(1000, 300); // Wider window for 40 points
@@ -36,8 +36,8 @@ void setup() {
   }
   
   // Calculate cell dimensions
-  cellWidth = width / dataPoints;
-  cellHeight = height / provinces;
+  cellWidth = width / dataPoints-2;
+  cellHeight = height / provinces-10;
 }
 
 void draw() {
