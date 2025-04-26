@@ -15,12 +15,12 @@ String[][] allProvinceFiles = {
   {"antwerpen_NEW_ICU.csv", "westVlaanderen_NEW_ICU.csv", "oostVlaanderen_NEW_ICU.csv", "limburg_NEW_ICU.csv",
     "vlaamsBrabant_NEW_ICU.csv", "brussel_NEW_ICU.csv", "luxemburg_NEW_ICU.csv", "namen_NEW_ICU.csv", "hainaut_NEW_ICU.csv", "liege_NEW_ICU.csv",
   "brabantWallon_NEW_ICU.csv"},
-  //{"antwerpen_NEW_ICU.csv", "westVlaanderen_NEW_ICU.csv", "oostVlaanderen_NEW_ICU.csv", "limburg_NEW_ICU.csv",
-  //"vlaamsBrabant_NEW_ICU.csv", "brussel_NEW_ICU.csv", "luxemburg_NEW_ICU.csv", "namen_NEW_ICU.csv", "hainaut_NEW_ICU.csv", "liege_NEW_ICU.csv",
-  //"brabantWallon_NEW_ICU.csv"},
-  //{"antwerpen_NEW_ICU.csv", "westVlaanderen_NEW_ICU.csv", "oostVlaanderen_NEW_ICU.csv", "limburg_NEW_ICU.csv",
-  //  "vlaamsBrabant_NEW_ICU.csv", "brussel_NEW_ICU.csv", "luxemburg_NEW_ICU.csv", "namen_NEW_ICU.csv", "hainaut_NEW_ICU.csv", "liege_NEW_ICU.csv",
-  //"brabantWallon_NEW_ICU.csv"}
+  {"antwerpen_TOT_RESP.csv", "westVlaanderen_TOT_RESP.csv", "oostVlaanderen_TOT_RESP.csv", "limburg_TOT_RESP.csv",
+  "vlaamsBrabant_TOT_RESP.csv", "brussel_TOT_RESP.csv", "luxemburg_TOT_RESP.csv", "namen_TOT_RESP.csv", "hainaut_TOT_RESP.csv", "liege_TOT_RESP.csv",
+  "brabantWallon_TOT_RESP.csv"},
+  {"antwerpen_TOT_ECMO.csv", "westVlaanderen_TOT_ECMO.csv", "oostVlaanderen_TOT_ECMO.csv", "limburg_TOT_ECMO.csv",
+    "vlaamsBrabant_TOT_ECMO.csv", "brussel_TOT_ECMO.csv", "luxemburg_TOT_ECMO.csv", "namen_TOT_ECMO.csv", "hainaut_TOT_ECMO.csv", "liege_TOT_ECMO.csv",
+  "brabantWallon_TOT_ECMO.csv"}
   
 };
 
