@@ -8,10 +8,10 @@ void setup() {
 size(1250,500);
  drawGradientRect(450, 400, 400, 50, color(255, 0, 0), color(0, 0, 255));
 
-  table = loadTable("COVID19BE_HOSP.csv", "header");
+  table = loadTable("Brussels_hospitalisaties_per_maand.csv", "header");
   println(table.getRowCount() + " total rows in table");
   for (TableRow row : table.rows()) {
-    String datum = row.getString("DATE");
+    String datum = row.getString("YEAR_MONTH");
     fill(0);
     //text(datum,random(2000),random(500));
     //println(datum);
