@@ -114,6 +114,16 @@ text("Dataset: " + (currentDataset + 1) + " - " + datasettitels[currentDataset],
       }
     }
   }
+  
+  int minVal = 0;
+  for (int i = 0; i < provinces; i++) {
+    for (int j = 0; j < dataPoints; j++) {
+      if (allValues[currentDataset][i][j] < minVal) {
+        minVal = allValues[currentDataset][i][j];
+      }
+    }
+  }
+  
 
   // Draw heatmap for current dataset
   stroke(0);
@@ -146,11 +156,24 @@ if (allValues[currentDataset][i][j] < maxVal/2){
      c = lerpColor(color(255), color(255,0,0), inter);
   }
   
+  
+  
   stroke(c);
+  
   line(i, height-120,i, height-80);
+  
+  
+  
 }
 
-  
+  fill(0);
+ textAlign(LEFT);
+  textSize(15);
+  text(minVal, 0, height-65);
+  textAlign(CENTER);
+  text(maxVal/2,width/6,height-65);
+  textAlign(RIGHT);
+  text(maxVal,width/3,height-65);
  
  hoverRow = -1;
   hoverCol = -1;
@@ -168,7 +191,7 @@ if (allValues[currentDataset][i][j] < maxVal/2){
 
   // Only show text if hovering over a cell
   if (hoverRow != -1 && hoverCol != -1) {
-    fill(255);
+    fill(0);
     textSize(12);
     text(allValues[currentDataset][hoverRow][hoverCol], 
          hoverCol * cellWidth + cellWidth/2, 
