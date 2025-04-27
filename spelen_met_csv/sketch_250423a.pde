@@ -121,10 +121,15 @@ text("Dataset: " + (currentDataset + 1) + " - " + datasettitels[currentDataset],
     for (int j = 0; j < dataPoints; j++) {
       
       color minColor = color(0, 0, 255); // Blue
+      color midcolor = color(255);
       color maxColor = color(255,0,0); // Red
-
-      float interp = map(allValues[currentDataset][i][j], 0, maxVal, 0, 1);
-      fill(lerpColor(minColor, maxColor, interp));
+if (allValues[currentDataset][i][j] < maxVal/2){
+      float interp = map(allValues[currentDataset][i][j], 0, maxVal/2, 0, 1);
+      fill(lerpColor(minColor, midcolor, interp));
+}else{
+  float interp = map(allValues[currentDataset][i][j],maxVal/2,maxVal,0,1);
+  fill(lerpColor(midcolor,maxColor, interp));
+}
       rect(j * cellWidth, i * cellHeight, cellWidth, cellHeight);
 
     }
@@ -137,7 +142,7 @@ text("Dataset: " + (currentDataset + 1) + " - " + datasettitels[currentDataset],
    c = lerpColor(color(0, 0, 255), color(255), inter);
     
     }else{
-     float inter = map(i, middle, width, 0, 1);
+     float inter = map(i, middle, width/3, 0, 1);
      c = lerpColor(color(255), color(255,0,0), inter);
   }
   
