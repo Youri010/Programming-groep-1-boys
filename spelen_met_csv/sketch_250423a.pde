@@ -116,11 +116,12 @@ text("Dataset: " + (currentDataset + 1) + " - " + datasettitels[currentDataset],
   }
 
   // Draw heatmap for current dataset
+  stroke(0);
   for (int i = 0; i < provinces; i++) {
     for (int j = 0; j < dataPoints; j++) {
       
       color minColor = color(0, 0, 255); // Blue
-      color maxColor = color(255, 0, 0); // Red
+      color maxColor = color(255,0,0); // Red
 
       float interp = map(allValues[currentDataset][i][j], 0, maxVal, 0, 1);
       fill(lerpColor(minColor, maxColor, interp));
@@ -128,6 +129,21 @@ text("Dataset: " + (currentDataset + 1) + " - " + datasettitels[currentDataset],
 
     }
   }
+  int middle = width/6;
+  color c;
+  for (int i = 0; i < width/3; i++) {
+    if (i < middle){
+  float inter = map(i, 0, middle, 0, 1);
+   c = lerpColor(color(0, 0, 255), color(255), inter);
+    
+    }else{
+     float inter = map(i, middle, width, 0, 1);
+     c = lerpColor(color(255), color(255,0,0), inter);
+  }
+  
+  stroke(c);
+  line(i, height-120,i, height-80);
+}
 
   
  
