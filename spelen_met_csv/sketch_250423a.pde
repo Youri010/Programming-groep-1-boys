@@ -22,8 +22,9 @@ String[][] allProvinceFiles = {
   "brabantWallon_TOT_RESP.csv"},
   {"antwerpen_TOT_ECMO.csv", "westVlaanderen_TOT_ECMO.csv", "oostVlaanderen_TOT_ECMO.csv", "limburg_TOT_ECMO.csv",
     "vlaamsBrabant_TOT_ECMO.csv", "brussel_TOT_ECMO.csv", "luxemburg_TOT_ECMO.csv", "namen_TOT_ECMO.csv", "hainaut_TOT_ECMO.csv", "liege_TOT_ECMO.csv",
-  "brabantWallon_TOT_ECMO.csv"}
-
+  "brabantWallon_TOT_ECMO.csv"},
+  { "Antwerpen_NR_REP.csv", "WestVlaanderen_NR_REP.csv",  "OostVlaanderen_NR_REP.csv", "Limburg_NR_REP.csv", "VlaamsBrabant_NR_REP.csv", "Brussels_NR_REP.csv",
+  "Luxembourg_NR_REP.csv", "Namur_NR_REP.csv", "Hainaut_NR_REP.csv","Liège_NR_REP.csv", "BrabantWallon_NR_REP.csv"}
 };
 
 String[] provincienaam = {
@@ -33,19 +34,20 @@ String[] provincienaam = {
 }; //voor X-as
 
 String[] months = {
-  "Maart 2020", "April 2020", "Mei 2020", "Juni 2020", "Juli 2020", "Augustus 2020", "September 2020", "October 2020", "November 2020", "December 2020", "Januari 2021", "Februari 2021", 
-  "Maart 2021", "April 2021", "Mei 2021", "Juni 2021",  "Juli 2021", "Augustus 2021", "September 2021", "October 2021", "November 2021", "December 2021", "Januari 2022", "Februari 2022", 
-  "Maart 2022", "April 2022", "Mei 2022", "Juni 2022", "Juli 2022", "Augustus 2022", "September 2022", "October 2022", "November 2022", "December 2022", "Januari 2023", "Februari 2023", 
+  "Maart 2020", "April 2020", "Mei 2020", "Juni 2020", "Juli 2020", "Augustus 2020", "September 2020", "October 2020", "November 2020", "December 2020", "Januari 2021", "Februari 2021",
+  "Maart 2021", "April 2021", "Mei 2021", "Juni 2021", "Juli 2021", "Augustus 2021", "September 2021", "October 2021", "November 2021", "December 2021", "Januari 2022", "Februari 2022",
+  "Maart 2022", "April 2022", "Mei 2022", "Juni 2022", "Juli 2022", "Augustus 2022", "September 2022", "October 2022", "November 2022", "December 2022", "Januari 2023", "Februari 2023",
   "Maart 2023", "April 2023", "Mei 2023", "Juni 2023",
 }; //voor Y-as
 
 String[] datasettitels = {
-  "Totaal opnames", 
-  "Totaal ICU opnames", 
-  "Nieuwe opnames", 
-  "Nieuwe ICU opnames", 
-  "Totaal beademing", 
-  "Totaal ECMO"
+  "Totaal opnames",
+  "Totaal ICU opnames",
+  "Nieuwe opnames",
+  "Nieuwe ICU opnames",
+  "Totaal beademing",
+  "Totaal ECMO",
+  "Aantal ziekenhuizen"
 }; //voor titel
 
 
@@ -54,10 +56,10 @@ float translateY = 50;
 float cellWidth, cellHeight;
 int dataPoints = 40;
 int provinces = 11;
-int numDatasets = 6;
+int numDatasets = 7;
 
 void setup() {
-  size(1500,600);
+  size(1500, 600);
   //noStroke();
 
   // Initialize arrays with correct dimensions
@@ -95,15 +97,15 @@ void setup() {
 
 void draw() {
   background(255);
-  
+
   //zorgen dat de titel niet getranslate wordt
   fill(0);
-textAlign(LEFT, TOP);
-textSize(20);
-text("Dataset: " + (currentDataset + 1) + " - " + datasettitels[currentDataset], 10, 10);
+  textAlign(LEFT, TOP);
+  textSize(20);
+  text("Dataset: " + (currentDataset + 1) + " - " + datasettitels[currentDataset], 10, 10);
 
-  
-  translate(translateX,translateY); //ruimte laten voor assen (ook nog voor legenda?)
+
+  translate(translateX, translateY); //ruimte laten voor assen (ook nog voor legenda?)
 
   // Find maximum value in CURRENT dataset
   int maxVal = 0;
@@ -114,7 +116,7 @@ text("Dataset: " + (currentDataset + 1) + " - " + datasettitels[currentDataset],
       }
     }
   }
-  
+
   int minVal = 0;
   for (int i = 0; i < provinces; i++) {
     for (int j = 0; j < dataPoints; j++) {
@@ -123,66 +125,61 @@ text("Dataset: " + (currentDataset + 1) + " - " + datasettitels[currentDataset],
       }
     }
   }
-  
+
 
   // Draw heatmap for current dataset
   stroke(0);
   for (int i = 0; i < provinces; i++) {
     for (int j = 0; j < dataPoints; j++) {
-      
+
       color minColor = color(0, 0, 255); // Blue
       color midcolor = color(255);
-      color maxColor = color(255,0,0); // Red
-if (allValues[currentDataset][i][j] < maxVal/2){
-      float interp = map(allValues[currentDataset][i][j], 0, maxVal/2, 0, 1);
-      fill(lerpColor(minColor, midcolor, interp));
-}else{
-  float interp = map(allValues[currentDataset][i][j],maxVal/2,maxVal,0,1);
-  fill(lerpColor(midcolor,maxColor, interp));
-}
+      color maxColor = color(255, 0, 0); // Red
+      if (allValues[currentDataset][i][j] < maxVal/2) {
+        float interp = map(allValues[currentDataset][i][j], 0, maxVal/2, 0, 1);
+        fill(lerpColor(minColor, midcolor, interp));
+      } else {
+        float interp = map(allValues[currentDataset][i][j], maxVal/2, maxVal, 0, 1);
+        fill(lerpColor(midcolor, maxColor, interp));
+      }
       rect(j * cellWidth, i * cellHeight, cellWidth, cellHeight);
-
     }
   }
   int middle = width/6;
   color c;
   for (int i = 0; i < width/3; i++) {
-    if (i < middle){
-  float inter = map(i, 0, middle, 0, 1);
-   c = lerpColor(color(0, 0, 255), color(255), inter);
-    
-    }else{
-     float inter = map(i, middle, width/3, 0, 1);
-     c = lerpColor(color(255), color(255,0,0), inter);
+    if (i < middle) {
+      float inter = map(i, 0, middle, 0, 1);
+      c = lerpColor(color(0, 0, 255), color(255), inter);
+    } else {
+      float inter = map(i, middle, width/3, 0, 1);
+      c = lerpColor(color(255), color(255, 0, 0), inter);
+    }
+
+
+
+    stroke(c);
+
+    line(i, height-120, i, height-80);
   }
-  
-  
-  
-  stroke(c);
-  
-  line(i, height-120,i, height-80);
-  
-  
-  
-}
 
   fill(0);
- textAlign(LEFT);
+  textAlign(LEFT);
   textSize(15);
   text(minVal, 0, height-65);
   textAlign(CENTER);
-  text(maxVal/2,width/6,height-65);
+  text(maxVal/2, width/6, height-65);
   textAlign(RIGHT);
-  text(maxVal,width/3,height-65);
- 
- hoverRow = -1;
+  text(maxVal, width/3, height-65);
+
+  hoverRow = -1;
   hoverCol = -1;
   float actualmouseX = mouseX-translateX;
   float actualmouseY = mouseY-translateY;
   for (int i = 0; i < provinces; i++) {
     for (int j = 0; j < dataPoints; j++) {
       if (actualmouseX >= j*cellWidth && actualmouseX < (j+1)*cellWidth &&
-          actualmouseY >= i*cellHeight && actualmouseY < (i+1)*cellHeight) {
+        actualmouseY >= i*cellHeight && actualmouseY < (i+1)*cellHeight) {
         hoverRow = i;
         hoverCol = j;
       }
@@ -191,25 +188,25 @@ if (allValues[currentDataset][i][j] < maxVal/2){
 
   // Only show text if hovering over a cell
   if (hoverRow != -1 && hoverCol != -1) {
-    textAlign(CENTER,CENTER);
+    textAlign(CENTER, CENTER);
     fill(0);
     textSize(12);
-    text(allValues[currentDataset][hoverRow][hoverCol], 
-         hoverCol * cellWidth + cellWidth/2, 
-         hoverRow * cellHeight + cellHeight/2);
-         
-       fill(0);
-  textSize(16);
-  textAlign(RIGHT,BOTTOM);
-  
-  String provinceName = provincienaam[hoverRow];
-  String monthName = months[hoverCol % months.length];
-  String info = provinceName + " - " + monthName;
-  
-  text(info, width - 80 - translateX, height - 20 - translateY);
-}
-  
-  
+    text(allValues[currentDataset][hoverRow][hoverCol],
+      hoverCol * cellWidth + cellWidth/2,
+      hoverRow * cellHeight + cellHeight/2);
+
+    fill(0);
+    textSize(16);
+    textAlign(RIGHT, BOTTOM);
+
+    String provinceName = provincienaam[hoverRow];
+    String monthName = months[hoverCol % months.length];
+    String info = provinceName + " - " + monthName;
+
+    text(info, width - 80 - translateX, height - 20 - translateY);
+  }
+
+
   // Y-as tekenen, provincie
   fill(0);
   textAlign(RIGHT, CENTER);
@@ -235,7 +232,6 @@ if (allValues[currentDataset][i][j] < maxVal/2){
   rotate(-HALF_PI);
   text("Provincie", 0, 0);
   popMatrix();//zorgen dat niet alles meegaat translaten
-
 }
 
 void keyPressed() {
