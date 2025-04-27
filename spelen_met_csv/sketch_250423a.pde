@@ -5,9 +5,9 @@ int hoverRow = -1;
 int hoverCol = -1;
 
 String[][] allProvinceFiles = {
-  {"antwerpen_TOT_IN.csv", "westVlaanderen_TOT_IN.csv", "oostVlaanderen_TOT_IN.csv", "limburg_TOT_IN.csv",
-    "vlaamsBrabant_TOT_IN.csv", "brussel_TOT_IN.csv", "luxemburg_TOT_IN.csv", "namen_TOT_IN.csv",
-  "hainaut_TOT_IN.csv", "liege_TOT_IN.csv", "brabantWallon_TOT_IN.csv"},
+  {"Antwerpen_TOT_IN.csv", "WestVlaanderen_TOT_IN.csv", "OostVlaanderen_TOT_IN.csv", "Limburg_TOT_IN.csv",
+    "VlaamsBrabant_TOT_IN.csv", "Brussel_TOT_IN.csv", "luxemburg_TOT_IN.csv", "namen_TOT_IN.csv",
+  "Hainaut_TOT_IN.csv", "Liege_TOT_IN.csv", "BrabantWallon_TOT_IN.csv"},
   {"antwerpen_TOT_ICU.csv", "westVlaanderen_TOT_ICU.csv", "oostVlaanderen_TOT_ICU.csv", "limburg_TOT_ICU.csv",
     "vlaamsBrabant_TOT_ICU.csv", "brussel_TOT_ICU.csv", "luxemburg_TOT_ICU.csv", "namen_TOT_ICU.csv", "hainaut_TOT_ICU.csv", "liege_TOT_ICU.csv",
   "brabantWallon_TOT_ICU.csv"},
@@ -93,6 +93,11 @@ void draw() {
 
     }
   }
+
+  
+ 
+
+
 
  hoverRow = -1;
   hoverCol = -1;
