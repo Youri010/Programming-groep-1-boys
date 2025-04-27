@@ -26,7 +26,7 @@ String[][] allProvinceFiles = {
 
 };
 
-String[] provinceNames = {
+String[] provincienaam = {
   "Antwerpen", "West-Vlaanderen", "Oost-Vlaanderen", "Limburg",
   "Vlaams-Brabant", "Brussel", "Luxemburg", "Namen",
   "Henegouwen", "Luik", "Waals-Brabant"
@@ -38,6 +38,15 @@ String[] months = {
   "Maart 2022", "April 2022", "Mei 2022", "Juni 2022", "Juli 2022", "Augustus 2022", "September 2022", "October 2022", "November 2022", "December 2022", "Januari 2023", "Februari 2023", 
   "Maart 2023", "April 2023", "Mei 2023", "Juni 2023",
 }; //voor Y-as
+
+String[] datasettitels = {
+  "Totaal opnames", 
+  "Totaal ICU opnames", 
+  "Nieuwe opnames", 
+  "Nieuwe ICU opnames", 
+  "Totaal beademing", 
+  "Totaal ECMO"
+};
 
 
 
@@ -85,6 +94,13 @@ void setup() {
 void draw() {
   background(255);
   
+  // Titel linksboven
+fill(0);
+textAlign(LEFT, TOP);
+textSize(20);
+text("Dataset: " + (currentDataset + 1) + " - " + datasettitels[currentDataset], 10, 10);
+
+  
   translate(150,50); //ruimte laten voor assen (ook nog voor legenda?)
 
   // Find maximum value in CURRENT dataset
@@ -113,9 +129,6 @@ void draw() {
 
   
  
-
-
-
  hoverRow = -1;
   hoverCol = -1;
   for (int i = 0; i < provinces; i++) {
@@ -142,7 +155,7 @@ void draw() {
   textAlign(RIGHT, CENTER);
   textSize(14);
   for (int i = 0; i < provinces; i++) {
-    text(provinceNames[i], -10, i*cellHeight + cellHeight/2);
+    text(provincienaam[i], -10, i*cellHeight + cellHeight/2);
   }
 
   // X-as maken, (Datum)
@@ -163,11 +176,6 @@ void draw() {
   text("Provincie", 0, 0);
   popMatrix();
 
-
-  // Display current dataset
-  fill(0);
-  textSize(20);
-  text("Dataset: " + (currentDataset + 1), 20, 30);
 }
 
 void keyPressed() {
