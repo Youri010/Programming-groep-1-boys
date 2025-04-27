@@ -191,12 +191,24 @@ if (allValues[currentDataset][i][j] < maxVal/2){
 
   // Only show text if hovering over a cell
   if (hoverRow != -1 && hoverCol != -1) {
+    textAlign(CENTER,CENTER);
     fill(0);
     textSize(12);
     text(allValues[currentDataset][hoverRow][hoverCol], 
          hoverCol * cellWidth + cellWidth/2, 
          hoverRow * cellHeight + cellHeight/2);
-  }
+         
+       fill(0);
+  textSize(16);
+  textAlign(RIGHT,BOTTOM);
+  
+  String provinceName = provincienaam[hoverRow];
+  String monthName = months[hoverCol % months.length];
+  String info = provinceName + " - " + monthName;
+  
+  text(info, width - 80 - translateX, height - 20 - translateY);
+}
+  
   
   // Y-as tekenen, provincie
   fill(0);
@@ -209,7 +221,7 @@ if (allValues[currentDataset][i][j] < maxVal/2){
   // X-as maken, datum
   textAlign(CENTER, TOP);
   for (int j = 0; j < dataPoints; j += 5) {
-    String label = months [j%40];
+    String label = months [j];
     text(label, j*cellWidth + cellWidth/2, provinces*cellHeight + 5);
   }
 
