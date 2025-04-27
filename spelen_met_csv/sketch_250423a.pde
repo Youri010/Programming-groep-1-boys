@@ -219,7 +219,7 @@ if (allValues[currentDataset][i][j] < maxVal/2){
   text("Datum", (dataPoints*cellWidth)/2, provinces*cellHeight + 50);
 
   pushMatrix();
-  translate(-100, (provinces*cellHeight)/2);
+  translate(-120, (provinces*cellHeight)/2);
   rotate(-HALF_PI);
   text("Provincie", 0, 0);
   popMatrix();//zorgen dat niet alles meegaat translaten
