@@ -46,10 +46,11 @@ String[] datasettitels = {
   "Nieuwe ICU opnames", 
   "Totaal beademing", 
   "Totaal ECMO"
-};
+}; //voor titel
 
 
-
+float translateX = 150;
+float translateY = 50;
 float cellWidth, cellHeight;
 int dataPoints = 40;
 int provinces = 11;
@@ -94,14 +95,14 @@ void setup() {
 void draw() {
   background(255);
   
-  // Titel linksboven
+  // Titel linksboven en niet verplaatst door translate
 fill(0);
 textAlign(LEFT, TOP);
 textSize(20);
 text("Dataset: " + (currentDataset + 1) + " - " + datasettitels[currentDataset], 10, 10);
 
   
-  translate(150,50); //ruimte laten voor assen (ook nog voor legenda?)
+  translate(translateX,translateY); //ruimte laten voor assen (ook nog voor legenda?)
 
   // Find maximum value in CURRENT dataset
   int maxVal = 0;
@@ -131,10 +132,12 @@ text("Dataset: " + (currentDataset + 1) + " - " + datasettitels[currentDataset],
  
  hoverRow = -1;
   hoverCol = -1;
+  float actualmouseX = mouseX-translateX;
+  float actualmouseY = mouseY-translateY;
   for (int i = 0; i < provinces; i++) {
     for (int j = 0; j < dataPoints; j++) {
-      if (mouseX >= j*cellWidth && mouseX < (j+1)*cellWidth &&
-          mouseY >= i*cellHeight && mouseY < (i+1)*cellHeight) {
+      if (actualmouseX >= j*cellWidth && actualmouseX < (j+1)*cellWidth &&
+          actualmouseY >= i*cellHeight && actualmouseY < (i+1)*cellHeight) {
         hoverRow = i;
         hoverCol = j;
       }
@@ -150,7 +153,7 @@ text("Dataset: " + (currentDataset + 1) + " - " + datasettitels[currentDataset],
          hoverRow * cellHeight + cellHeight/2);
   }
   
-  // Y-as tekenen, (provincies)
+  // Y-as tekenen, provincie
   fill(0);
   textAlign(RIGHT, CENTER);
   textSize(14);
@@ -158,7 +161,7 @@ text("Dataset: " + (currentDataset + 1) + " - " + datasettitels[currentDataset],
     text(provincienaam[i], -10, i*cellHeight + cellHeight/2);
   }
 
-  // X-as maken, (Datum)
+  // X-as maken, datum
   textAlign(CENTER, TOP);
   for (int j = 0; j < dataPoints; j += 5) {
     String label = months [j%40];
@@ -174,7 +177,7 @@ text("Dataset: " + (currentDataset + 1) + " - " + datasettitels[currentDataset],
   translate(-100, (provinces*cellHeight)/2);
   rotate(-HALF_PI);
   text("Provincie", 0, 0);
-  popMatrix();
+  popMatrix();//zorgen dat niet alles meegaat translaten
 
 }
 
