@@ -64,6 +64,7 @@ void setup() {
   allProvinceData = new Table[numDatasets][provinces];
   allValues = new int[numDatasets][provinces][dataPoints];
 
+
   // Load all datasets
   for (int d = 0; d < numDatasets; d++) {
     for (int i = 0; i < provinces; i++) {
@@ -95,8 +96,8 @@ void setup() {
 void draw() {
   background(255);
   
-  // Titel linksboven en niet verplaatst door translate
-fill(0);
+  //zorgen dat de titel niet getranslate wordt
+  fill(0);
 textAlign(LEFT, TOP);
 textSize(20);
 text("Dataset: " + (currentDataset + 1) + " - " + datasettitels[currentDataset], 10, 10);
@@ -146,7 +147,7 @@ text("Dataset: " + (currentDataset + 1) + " - " + datasettitels[currentDataset],
 
   // Only show text if hovering over a cell
   if (hoverRow != -1 && hoverCol != -1) {
-    fill(0);
+    fill(255);
     textSize(12);
     text(allValues[currentDataset][hoverRow][hoverCol], 
          hoverCol * cellWidth + cellWidth/2, 
