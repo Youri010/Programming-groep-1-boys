@@ -132,14 +132,14 @@ void draw() {
   for (int i = 0; i < provinces; i++) {
     for (int j = 0; j < dataPoints; j++) {
 
-      color minColor = color(0, 0, 255); // Blue
-      color midcolor = color(255);
-      color maxColor = color(255, 0, 0); // Red
+      color minColor = color(0, 180,0 ); // Blue
+      color midcolor = color(255,255,0);
+      color maxColor = color(180, 0, 0); // Red
       if (allValues[currentDataset][i][j] < maxVal/2) {
-        float interp = map(allValues[currentDataset][i][j], 0, maxVal/2, 0, 1);
+        float interp = map(log(allValues[currentDataset][i][j]), 0, log(maxVal/2), 0, 1);
         fill(lerpColor(minColor, midcolor, interp));
       } else {
-        float interp = map(allValues[currentDataset][i][j], maxVal/2, maxVal, 0, 1);
+        float interp = map(log(allValues[currentDataset][i][j]), log(maxVal/2), log(maxVal), 0, 1);
         fill(lerpColor(midcolor, maxColor, interp));
       }
       rect(j * cellWidth, i * cellHeight, cellWidth, cellHeight);
@@ -150,10 +150,10 @@ void draw() {
   for (int i = 0; i < width/3; i++) {
     if (i < middle) {
       float inter = map(i, 0, middle, 0, 1);
-      c = lerpColor(color(0, 0, 255), color(255), inter);
+      c = lerpColor(color(0, 180, 0), color(255,255,0), inter);
     } else {
       float inter = map(i, middle, width/3, 0, 1);
-      c = lerpColor(color(255), color(255, 0, 0), inter);
+      c = lerpColor(color(255,255,0), color(180, 0, 0), inter);
     }
 
 
@@ -167,6 +167,7 @@ void draw() {
   textAlign(LEFT);
   textSize(15);
   text(minVal, 0, height-65);
+  
   textAlign(CENTER);
   text(maxVal/2, width/6, height-65);
   textAlign(RIGHT);
@@ -232,20 +233,4 @@ void draw() {
   rotate(-HALF_PI);
   text("Provincie", 0, 0);
   popMatrix();//zorgen dat niet alles meegaat translaten
-}
-
-void keyPressed() {
-
-  if (key >= '1' && key <= '9') {
-    int newDataset = key - '1';
-    if (newDataset < numDatasets) {
-      currentDataset = newDataset;
-    }
-  }
-
-  if (keyCode == LEFT) {
-    currentDataset = (currentDataset - 1 + numDatasets) % numDatasets;
-  } else if (keyCode == RIGHT) {
-    currentDataset = (currentDataset + 1) % numDatasets;
-  }
 }
