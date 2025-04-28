@@ -117,8 +117,8 @@ void draw() {
   for (int i = 0; i < provinces; i++) {
     for (int j = 0; j < dataPoints; j++) {
 
-      color minColor = color(0, 180,0 ); // Blue
-      color midcolor = color(255,255,0);
+      color minColor = color(0, 180,0 ); // green deze kleuren duidelijker wat goed en slecht is?
+      color midcolor = color(255,255,0);//yellow
       color maxColor = color(180, 0, 0); // Red
       if (allValues[currentDataset][i][j] < maxVal/2) {
         float interp = map(log(allValues[currentDataset][i][j]), 0, log(maxVal/2), 0, 1);
@@ -140,9 +140,6 @@ void draw() {
       float inter = map(i, middle, width/3, 0, 1);
       c = lerpColor(color(255,255,0), color(180, 0, 0), inter);
     }
-
-
-
     stroke(c);
 
     line(i, height-120, i, height-80);
@@ -157,8 +154,9 @@ void draw() {
   text(maxVal/2, width/6, height-65);
   textAlign(RIGHT);
   text(maxVal, width/3, height-65);
+  //functie van mousehover
   muis();
-  assen (cellHeight,cellWidth,provincienaam,months);
+  //functie die assen maakt
+  assen (cellHeight,cellWidth);
+  
 }
-
- 

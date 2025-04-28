@@ -10,7 +10,8 @@ String[] months = {
   "Maart 2022", "April 2022", "Mei 2022", "Juni 2022", "Juli 2022", "Augustus 2022", "September 2022", "October 2022", "November 2022", "December 2022", "Januari 2023", "Februari 2023",
   "Maart 2023", "April 2023", "Mei 2023", "Juni 2023",
 }; //voor Y-as
-void assen (float cellHeight, float cellWidth,String[] provincienaam,String[] months){ 
+//maakt de assen
+void assen (float cellHeight, float cellWidth){ 
   int dataPoints = 40;
   int provinces = 11;
    // Y-as tekenen, provincie
@@ -39,8 +40,9 @@ void assen (float cellHeight, float cellWidth,String[] provincienaam,String[] mo
   text("Provincie", 0, 0);
   popMatrix();//zorgen dat niet alles meegaat translaten
 }
+//uitleg functie 
 void muis(){
-  int hoverRow = -1;
+  int hoverRow = -1;//voor wat dienen deze waardes?
   int hoverCol = -1;
   float actualmouseX = mouseX-translateX;
   float actualmouseY = mouseY-translateY;
