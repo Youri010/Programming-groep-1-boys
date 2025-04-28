@@ -26,6 +26,7 @@ String[][] allProvinceFiles = {
   "Luxembourg_NR_REP.csv", "Namur_NR_REP.csv", "Hainaut_NR_REP.csv", "Liège_NR_REP.csv", "BrabantWallon_NR_REP.csv"}
 };
 
+ //voor titel van dataset
 String[] datasettitels = {
   "Totaal opnames",
   "Totaal ICU opnames",
@@ -34,9 +35,9 @@ String[] datasettitels = {
   "Totaal beademing",
   "Totaal ECMO",
   "Aantal ziekenhuizen"
-}; //voor titel
+};
 
-
+//variables 
 float translateX = 150;
 float translateY = 50;
 float cellWidth, cellHeight;
@@ -46,7 +47,7 @@ int numDatasets = 7;
 
 void setup() {
   size(1500, 600);
-  //noStroke();
+ 
 
   // Initialize arrays with correct dimensions
   allProvinceData = new Table[numDatasets][provinces];
@@ -87,7 +88,7 @@ void draw() {
   text("Dataset: " + (currentDataset + 1) + " - " + datasettitels[currentDataset], 10, 10);
 
 
-  translate(translateX, translateY); //ruimte laten voor assen (ook nog voor legenda?)
+  translate(translateX, translateY); //ruimte laten voor assen
 
   // Find maximum value in CURRENT dataset
   int maxVal = 0;
