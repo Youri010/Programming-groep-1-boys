@@ -1,4 +1,4 @@
-Table[][] allProvinceData; // 2D noemen
+Table[][] allProvinceData; // [dataset][province] (dataset = month)
 int[][][] allValues;      // [dataset][province][dataPoint]
 int currentDataset = 0;
 
@@ -21,8 +21,8 @@ String[][] allProvinceFiles = {
   {"antwerpen_TOT_ECMO.csv", "westVlaanderen_TOT_ECMO.csv", "oostVlaanderen_TOT_ECMO.csv", "limburg_TOT_ECMO.csv",
     "vlaamsBrabant_TOT_ECMO.csv", "brussel_TOT_ECMO.csv", "luxemburg_TOT_ECMO.csv", "namen_TOT_ECMO.csv", "hainaut_TOT_ECMO.csv", "liege_TOT_ECMO.csv",
   "brabantWallon_TOT_ECMO.csv"},
-  { "Antwerpen_NR_REP.csv", "WestVlaanderen_NR_REP.csv",  "OostVlaanderen_NR_REP.csv", "Limburg_NR_REP.csv", "VlaamsBrabant_NR_REP.csv", "Brussels_NR_REP.csv",
-  "Luxembourg_NR_REP.csv", "Namur_NR_REP.csv", "Hainaut_NR_REP.csv","Liège_NR_REP.csv", "BrabantWallon_NR_REP.csv"}
+  { "Antwerpen_NR_REP.csv", "WestVlaanderen_NR_REP.csv", "OostVlaanderen_NR_REP.csv", "Limburg_NR_REP.csv", "VlaamsBrabant_NR_REP.csv", "Brussels_NR_REP.csv",
+  "Luxembourg_NR_REP.csv", "Namur_NR_REP.csv", "Hainaut_NR_REP.csv", "Liège_NR_REP.csv", "BrabantWallon_NR_REP.csv"}
 };
 
 String[] datasettitels = {
@@ -59,11 +59,6 @@ void setup() {
       if (allProvinceFiles[d].length > i && allProvinceFiles[d][i] != null) {
         allProvinceData[d][i] = loadTable(allProvinceFiles[d][i]);
 
-        // Error
-        if (allProvinceData[d][i] == null) {
-          println("ERROR: Could not load " + allProvinceFiles[d][i]);
-          exit();
-        }
 
         // Store values
         for (int j = 0; j < dataPoints; j++) {
@@ -77,7 +72,7 @@ void setup() {
 
   // Calculate cell dimensions
   cellWidth = (width - 200) / dataPoints;
-  cellHeight = (height - 150) / provinces; //kleiner maken om ruimte te creeeren voor assen en legenda
+  cellHeight = (height - 150) / provinces; // kleiner maken om ruimte te creeeren voor assen en legenda
 }
 
 void draw() {
@@ -117,8 +112,8 @@ void draw() {
   for (int i = 0; i < provinces; i++) {
     for (int j = 0; j < dataPoints; j++) {
 
-      color minColor = color(0, 180,0 ); // green deze kleuren duidelijker wat goed en slecht is?
-      color midcolor = color(255,255,0);//yellow
+      color minColor = color(0, 180, 0 ); // green deze kleuren duidelijker wat goed en slecht is?
+      color midcolor = color(255, 255, 0);//yellow
       color maxColor = color(180, 0, 0); // Red
       if (allValues[currentDataset][i][j] < maxVal/2) {
         float interp = map(log(allValues[currentDataset][i][j]), 0, log(maxVal/2), 0, 1);
@@ -135,10 +130,10 @@ void draw() {
   for (int i = 0; i < width/3; i++) {
     if (i < middle) {
       float inter = map(i, 0, middle, 0, 1);
-      c = lerpColor(color(0, 180, 0), color(255,255,0), inter);
+      c = lerpColor(color(0, 180, 0), color(255, 255, 0), inter);
     } else {
       float inter = map(i, middle, width/3, 0, 1);
-      c = lerpColor(color(255,255,0), color(180, 0, 0), inter);
+      c = lerpColor(color(255, 255, 0), color(180, 0, 0), inter);
     }
     stroke(c);
 
@@ -149,7 +144,7 @@ void draw() {
   textAlign(LEFT);
   textSize(15);
   text(minVal, 0, height-65);
-  
+
   textAlign(CENTER);
   text(maxVal/2, width/6, height-65);
   textAlign(RIGHT);
@@ -157,6 +152,5 @@ void draw() {
   //functie van mousehover
   muis();
   //functie die assen maakt
-  assen (cellHeight,cellWidth);
-  
+  assen (cellHeight, cellWidth);
 }
