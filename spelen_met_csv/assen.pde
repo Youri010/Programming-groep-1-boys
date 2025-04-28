@@ -41,9 +41,9 @@ void assen (float cellHeight, float cellWidth){
 }
 //uitleg functie 
 void muis(){
-  int hoverRow = -1;//voor wat dienen deze waardes?
+  int hoverRow = -1;
   int hoverCol = -1;
-  float actualmouseX = mouseX-translateX;
+  float actualmouseX = mouseX-translateX; //corrigeren voor translatie
   float actualmouseY = mouseY-translateY;
   for (int i = 0; i < provinces; i++) {
     for (int j = 0; j < dataPoints; j++) {
@@ -55,7 +55,7 @@ void muis(){
     }
   }
 
-  // Only show text if hovering over a cell
+  
   if (hoverRow != -1 && hoverCol != -1) {
     textAlign(CENTER, CENTER);
     fill(0);
