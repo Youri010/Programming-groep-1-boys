@@ -2,14 +2,14 @@ String[] provincienaam = {
   "Antwerpen", "West-Vlaanderen", "Oost-Vlaanderen", "Limburg",
   "Vlaams-Brabant", "Brussel", "Luxemburg", "Namen",
   "Henegouwen", "Luik", "Waals-Brabant"
-}; //voor X-as
+}; //voor Y-as
 
 String[] months = {
   "Maart 2020", "April 2020", "Mei 2020", "Juni 2020", "Juli 2020", "Augustus 2020", "September 2020", "October 2020", "November 2020", "December 2020", "Januari 2021", "Februari 2021",
   "Maart 2021", "April 2021", "Mei 2021", "Juni 2021", "Juli 2021", "Augustus 2021", "September 2021", "October 2021", "November 2021", "December 2021", "Januari 2022", "Februari 2022",
   "Maart 2022", "April 2022", "Mei 2022", "Juni 2022", "Juli 2022", "Augustus 2022", "September 2022", "October 2022", "November 2022", "December 2022", "Januari 2023", "Februari 2023",
   "Maart 2023", "April 2023", "Mei 2023", "Juni 2023",
-}; //voor Y-as
+}; //voor X-as
 //maakt de assen
 void assen (float cellHeight, float cellWidth){ 
   int dataPoints = 40;
@@ -25,8 +25,7 @@ void assen (float cellHeight, float cellWidth){
   // X-as maken, datum
   textAlign(CENTER, TOP);
   for (int j = 0; j < dataPoints; j += 5) {
-    String label = months [j];
-    text(label, j*cellWidth + cellWidth/2, provinces*cellHeight + 5);
+    text(months [j], j*cellWidth + cellWidth/2, provinces*cellHeight + 5);
   }
 
   // Titel assen
