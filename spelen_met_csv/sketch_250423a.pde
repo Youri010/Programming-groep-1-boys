@@ -1,7 +1,8 @@
 Table[][] allProvinceData; // [dataset][province] (dataset = month)
 int[][][] allValues;      // [dataset][province][dataPoint]
 int currentDataset = 0;
-
+int zichtbKolom = 0;
+int revealSpeed = 1;
 String[][] allProvinceFiles = {
   {"Antwerpen_TOT_IN.csv", "WestVlaanderen_TOT_IN.csv", "OostVlaanderen_TOT_IN.csv", "Limburg_TOT_IN.csv",
     "VlaamsBrabant_TOT_IN.csv", "Brussel_TOT_IN.csv", "luxemburg_TOT_IN.csv", "namen_TOT_IN.csv",
@@ -73,8 +74,9 @@ void setup() {
   // Calculate cell dimensions
   cellWidth = (width - 200) / dataPoints;
   cellHeight = (height - 150) / provinces; // kleiner maken om ruimte te creeeren voor assen en legenda
+  frameRate(10);
 }
-
+  
 void draw() {
   background(255);
 
@@ -110,8 +112,8 @@ void draw() {
   // Draw heatmap for current dataset
   stroke(0);
   for (int i = 0; i < provinces; i++) {
-    for (int j = 0; j < dataPoints; j++) {
-
+    for (int j = 0; j < zichtbKolom; j++) {
+      if (j >= dataPoints) continue;
       color minColor = color(0, 180, 0 ); // green deze kleuren duidelijker wat goed en slecht is?
       color midcolor = color(255, 255, 0);//yellow
       color maxColor = color(180, 0, 0); // Red
@@ -125,6 +127,7 @@ void draw() {
       rect(j * cellWidth, i * cellHeight, cellWidth, cellHeight);
     }
   }
+  zichtbKolom += revealSpeed;
   int middle = width/6;
   color c;
   for (int i = 0; i < width/3; i++) {
