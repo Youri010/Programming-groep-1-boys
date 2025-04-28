@@ -70,7 +70,7 @@ void muis(){
     textAlign(RIGHT, BOTTOM);
 
     String provinceName = provincienaam[hoverRow];
-    String monthName = months[hoverCol % months.length];
+    String monthName = months[hoverCol];
     String info = provinceName + " - " + monthName;
 
     text(info, width - 200 - translateX, height - 20 - translateY);

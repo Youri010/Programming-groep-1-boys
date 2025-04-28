@@ -1,4 +1,4 @@
-Table[][] allProvinceData; // Correct declaration as 2D array
+Table[][] allProvinceData; // 2D noemen
 int[][][] allValues;      // [dataset][province][dataPoint]
 int currentDataset = 0;
 
@@ -52,14 +52,14 @@ void setup() {
   allValues = new int[numDatasets][provinces][dataPoints];
 
 
-  // Load all datasets
+  // datasets laden
   for (int d = 0; d < numDatasets; d++) {
     for (int i = 0; i < provinces; i++) {
       // Skip if no file defined for this dataset/province
       if (allProvinceFiles[d].length > i && allProvinceFiles[d][i] != null) {
         allProvinceData[d][i] = loadTable(allProvinceFiles[d][i]);
 
-        // Error check
+        // Error
         if (allProvinceData[d][i] == null) {
           println("ERROR: Could not load " + allProvinceFiles[d][i]);
           exit();
@@ -77,7 +77,7 @@ void setup() {
 
   // Calculate cell dimensions
   cellWidth = (width - 200) / dataPoints;
-  cellHeight = (height - 150) / provinces; //kleiner maken om ruimte te creeeren
+  cellHeight = (height - 150) / provinces; //kleiner maken om ruimte te creeeren voor assen en legenda
 }
 
 void draw() {
